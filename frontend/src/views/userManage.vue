@@ -82,7 +82,7 @@
                     </div>
                     <div class="w-4/5">
                       <input
-                        required
+                        required = "true"
                         :value="post.Title"
                         type="text"
                         name="title"
@@ -100,8 +100,8 @@
                         v-model="post.Detail"
                         rows="4"
                         cols = "20"
-                        id="description"
-                        name="description"
+                        id="detail"
+                        name="detail"
                       ></textarea>
                     </p>
                   
@@ -112,15 +112,15 @@
                   >
                     <button
                       class="btn"
-                      type="button"
-                      v-on:click="toggleModal(post.POST_ID)"
+                      type="submit"
+                      v-on:click="toggleModal(post.POST_ID); edit(post.POST_ID)"
                     >
-                      Close
+                      submit
                     </button>
                     <!-- <button 
                       class="btn" 
                       type="submit"
-                      v-on:click = ""
+                      v-on:click = " toggleModal(post.POST_ID); edit(post.POST_ID)"
                     >
                       Save Changes
                     </button> -->
@@ -148,8 +148,8 @@
 <script>
 import axios from "axios";
 import Cookies from "js-cookie";
-import sanitizeHtml from 'sanitize-html'
 import { ref, reactive } from "vue";
+import { useRouter } from 'vue-router';
 const baseUrl = "http://localhost:3000/api/";
 const frontEndUrl = "http://localhost:5173";
 
@@ -162,7 +162,9 @@ export default {
     // 這裡用reactive因為內容會改變
     const showModal = reactive([100]);
     // some functions
-
+    const title = ref("");
+    const detail = ref("");
+    const router = useRouter();
     const toggleModal = (id) => {
       // console.log("toggle Modal", id);
       showModal[id] = !showModal[id];
@@ -195,13 +197,40 @@ export default {
       });
       posts.value = response.data;
       
-      // console.log(posts.value);
+      console.log(posts.value);
       // console.log(mypost.value);
       mypost.value = Cookies.get("username");
     };
     getPosts();
+
+    const edit = async (id) => {
+        try {
+          const res = await axios.post(
+            baseUrl + "post/" + id + "/edit",
+            { 
+              title : title.value,
+              detail: detail.value,
+              id : id
+            },
+            // {
+            //   params : id
+            // },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + Cookies.get("jwt"),
+              },
+            }
+          );
+          console.log(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+        alert("新增成功")
+        router.push('/');
+      };
     
-    return { posts, showModal, toggleModal, frontEndUrl, dp, mypost};
+    return { posts, showModal, toggleModal, frontEndUrl, dp, mypost, edit, title, detail};
   },
 };
 </script>

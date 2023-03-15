@@ -1,6 +1,6 @@
 <!-- not done yet -->
 <template>
-    <div>
+    <div class = "pt-24">
       <div class="card sticky hyphens">
         <h1 class="article-title">{{ post.Title }}</h1>
         <p class="text-sm text-slate-400 mb-2">by {{ post.Author }}</p>
