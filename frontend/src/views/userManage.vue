@@ -134,14 +134,14 @@
     </div>
     <br/>
     <!-- 有空再改吧 -->
-    <div v-if = "ispost" class = "fontSize_NoPost text-center">
+    <!-- <div v-if = "ispost" class = "fontSize_NoPost text-center">
         <div v-once>
           
           <h1>No post yet?</h1>
           <h1>Create a new one! </h1>
           
         </div>  
-    </div>
+    </div> -->
     <br/>
   </div>
 </template>

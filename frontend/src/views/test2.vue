@@ -22,7 +22,7 @@
                 <div class="text-sm text-slate-400 text-muted mb-2">
                   {{ post.Author }}
                 </div>
-                <div class="article-desc mb-2 word-wrap:break-word">
+                <div class="article-desc mb-2">
                   {{ post.Detail }}
                 </div>
               </div>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="w-4/5">
                       <input
-                        required
+                        required = "true"
                         :value="post.Title"
                         type="text"
                         name="title"
@@ -94,16 +94,16 @@
 
                   <!--body-->
                   <div class="relative p-6 flex-auto">
-                    <div class="my-4 text-slate-500 text-lg leading-relaxed">
+                    <p class="my-4 text-slate-500 text-lg leading-relaxed">
                       <textarea
                         class="form-control"
                         v-model="post.Detail"
                         rows="4"
                         cols = "20"
-                        id="description"
-                        name="description"
+                        id="detail"
+                        name="detail"
                       ></textarea>
-                    </div>
+                    </p>
                   
                   </div>
                   <!--footer-->
@@ -112,11 +112,18 @@
                   >
                     <button
                       class="btn"
-                      type="button"
-                      v-on:click="toggleModal(post.POST_ID)"
+                      type="submit"
+                      v-on:click="toggleModal(post.POST_ID); edit(post.POST_ID)"
                     >
-                      Close
+                      submit
                     </button>
+                    <!-- <button 
+                      class="btn" 
+                      type="submit"
+                      v-on:click = " toggleModal(post.POST_ID); edit(post.POST_ID)"
+                    >
+                      Save Changes
+                    </button> -->
                   </div>
                 </form>
               </div>
@@ -127,22 +134,14 @@
     </div>
     <br/>
     <!-- 有空再改吧 -->
-    <div v-if = "ispost" class = "fontSize_NoPost text-center">
-        <div v-once>
-          
-          <h1>No post yet?</h1>
-          <h1>Create a new one! </h1>
-          
-        </div>  
-    </div>
     <br/>
   </div>
 </template>
 <script>
 import axios from "axios";
 import Cookies from "js-cookie";
-import sanitizeHtml from 'sanitize-html'
 import { ref, reactive } from "vue";
+import { useRouter } from 'vue-router';
 const baseUrl = "http://localhost:3000/api/";
 const frontEndUrl = "http://localhost:5173";
 
@@ -155,7 +154,9 @@ export default {
     // 這裡用reactive因為內容會改變
     const showModal = reactive([100]);
     // some functions
-
+    const title = ref("");
+    const detail = ref("");
+    const router = useRouter();
     const toggleModal = (id) => {
       // console.log("toggle Modal", id);
       showModal[id] = !showModal[id];
@@ -188,24 +189,29 @@ export default {
       });
       posts.value = response.data;
       
-      // console.log(posts.value);
+      console.log(posts.value);
       // console.log(mypost.value);
       mypost.value = Cookies.get("username");
     };
+    getPosts();
 
-    const updatePost = () => {
-      axios.put(`http://localhost:5555/articles/${props.postId}`, post.value)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    const edit = async (id) => {
+      const title = document.getElementById("title").value;
+        const detail = document.getElementById("detail").value;
+        const data = { title, detail, id };
+        
+        //post data with axios, if response is 200, pop up a message then redirect to home page, else pop up a message
+        axios
+          .post("http://localhost:3000/post/" + id + "/edit", data, {
+            //Allow cookies to be saved
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          })
     };
     
-    getPosts();
-    
-    return { posts, showModal, toggleModal, frontEndUrl, dp, mypost};
+    return { posts, showModal, toggleModal, frontEndUrl, dp, mypost, edit};
   },
 };
 </script>

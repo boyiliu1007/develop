@@ -10,6 +10,7 @@ import userManagement from "@/views/userManage.vue";
 import notLogIn from "@/views/notLogIn.vue";
 import test from "@/views/test.vue"
 import test2 from "@/views/test2.vue"
+import addComments from "@/views/addComments.vue"
 // 設置路由
 // 參考文件：https://ithelp.ithome.com.tw/articles/10276947
 const router = createRouter({
@@ -79,6 +80,12 @@ const router = createRouter({
       path: "/test2",
       name: "test2",
       component: test2,
+
+    },
+    {
+      path: "/post/:id/addcomments",
+      name: "addComments",
+      component: addComments,
 
     },
   ],

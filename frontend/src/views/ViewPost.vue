@@ -9,11 +9,13 @@
       </div>
     </div>
     <div class="overflow-y-scroll m-4 p-10">
-      <h1 class="article-title">Comments</h1>
-
-      <div>
-        <div>
-          
+      
+      <div class = "flex flex-row ">
+        <h1 class="article-title w-4/5 justify-start pr-10" >Comments</h1>
+        <div class = " justify-end">
+          <div class = "w-auto self-center pl-3">
+            <button class="btnWhite" @click="link">new</button>
+          </div>
         </div>
       </div>
 
@@ -32,11 +34,14 @@
 <script>
   import axios from "axios";
   import { ref } from "vue";
+  import Cookies from "js-cookie";
   import { useRoute } from "vue-router";
+  import { useRouter } from 'vue-router';
   const baseUrl = "http://localhost:3000/api/post/";
   export default {
     setup() {
       const route = useRoute();
+      const router = useRouter();
       const showWarning = ref(false);
       const Warning_msg = ref("");
       let reqUrl = baseUrl + route.params.id;
@@ -72,7 +77,16 @@
       };
       getPost();
       getComment();
-      return { post, comments, showWarning, Warning_msg };
+
+      const link =() =>{
+        if(Cookies.get("jwt")){
+          router.push(route.params.id + "/addcomments");
+        }
+        else{
+          router.push("/notLogin");
+        }
+      }
+      return { post, comments, showWarning, Warning_msg, link};
     }
   }
 </script>
