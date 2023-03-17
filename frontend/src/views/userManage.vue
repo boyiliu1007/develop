@@ -82,12 +82,12 @@
                     </div>
                     <div class="w-4/5">
                       <input
-                        required = "true"
-                        :value="post.Title"
+                        v-model="post.Titke"
+                        
                         type="text"
                         name="title"
                         id="title"
-                        class="form-control w-11/12"
+                        class="w-11/12"
                       />
                     </div>
                   </div>

@@ -18,7 +18,7 @@
       </router-link>
 
       <router-link to="/user" v-if = "log_status" class="m-4 buttonHover">
-        <span>管理文章</span>
+        <span>我的文章</span>
       </router-link>
 
       <router-link to="/auth" class="m-4 buttonHover">
