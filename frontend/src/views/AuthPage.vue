@@ -1,6 +1,6 @@
 <!-- done, but could be better -->
 <template>
-    <div class="container">
+    <div class="container animate__animated animate__fadeInDown">
       
       <div class="bluebg">
         <div class="box signin">

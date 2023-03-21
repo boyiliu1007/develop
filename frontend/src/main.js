@@ -8,6 +8,7 @@ import VueAxios from "vue-axios";
 
 import "./assets/tailwind.css";
 import "./assets/test123.css";
+import "animate.css";
 
 const app = createApp(App);
 

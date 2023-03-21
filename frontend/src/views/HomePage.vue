@@ -2,10 +2,10 @@
 <template>
   <div class="flex flex-col pt-24 ease-in-out duration-1000">
     <!--用 v-for 可以迭代-->
-    <h1 class="text-3xl article-title self-center">所有文章</h1>
+    <h1 class="text-3xl article-title self-center animate__animated animate__fadeInLeft">所有文章</h1>
     <!-- <hr/> -->
     <!-- 下面的 div 加self-center 置中-->
-      <div v-for="POST in posts" v-bind:key="POST.POST_ID" class="group self-center">
+      <div v-for="POST in posts" v-bind:key="POST.POST_ID" class="group self-center animate__animated animate__fadeInLeft">
         <div class="wrap-collabsible ease-in-out duration-1000 ">
           <!-- <input id="collapsible" class="toggle" type="checkbox" /> -->
 

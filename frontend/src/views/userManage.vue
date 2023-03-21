@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col pt-24 ease-in-out duration-1000">
+  <div class="flex flex-col pt-24 ease-in-out duration-1000 animate__animated animate__fadeInLeft">
     <!--用 v-for 可以迭代-->
     <h1 class="text-3xl article-title self-center">我的文章</h1>
 
@@ -70,19 +70,14 @@
               <div
                 class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
               >
-                <form
-                  :action="
-                    'http://localhost:5555/articles/' + post.POST_ID + '?_method=PUT'
-                  "
-                  method="POST"
-                >
+                <div>
                   <div class="form-group flex flex-row w-full m-4 z-0">
                     <div class="w-1/5 border-0 border-blue">
                       <label for="title">Title</label>
                     </div>
                     <div class="w-4/5">
                       <input
-                        v-model="post.Titke"
+                        v-model="post.Title"
                         
                         type="text"
                         name="title"
@@ -113,7 +108,7 @@
                     <button
                       class="btn"
                       type="submit"
-                      v-on:click="toggleModal(post.POST_ID); edit(post.POST_ID)"
+                      v-on:click="toggleModal(post.POST_ID); edit(post.POST_ID,post.Title,post.Detail)"
                     >
                       submit
                     </button>
@@ -125,7 +120,7 @@
                       Save Changes
                     </button> -->
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
@@ -203,13 +198,13 @@ export default {
     };
     getPosts();
 
-    const edit = async (id) => {
+    const edit = async (id,title,detail) => {
         try {
           const res = await axios.post(
             baseUrl + "post/" + id + "/edit",
             { 
-              title : title.value,
-              detail: detail.value,
+              title : title,
+              detail: detail,
               id : id
             },
             // {

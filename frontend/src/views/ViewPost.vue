@@ -1,5 +1,6 @@
 <!-- not done yet -->
 <template>
+  <div class = "animate__animated animate__fadeInLeft">
     <div class = "pt-24">
       <div class="card sticky hyphens">
         <h1 class="article-title">{{ post.Title }}</h1>
@@ -29,6 +30,7 @@
         </div>
       </div>
     </div>
+  </div>
   </template>
 
 <script>
