@@ -1,91 +1,98 @@
 <!-- done, but could be better -->
 <template>
-    <div class="container animate__animated animate__fadeInDown">
-      
-      <div class="bluebg">
-        <div class="box signin">
-          <h2>Already have an Account?</h2>
-          <button class="signinbtn btn" @click="ClickSignIn">Sign In</button>
+  <div class = "container">
+    <!-- <h2>Already have an Account?</h2> -->
+    <!-- <button @click="ClickSignIn">Sign In</button> -->
+    <!-- <h2>Don't have an Account?</h2> -->
+    <!-- <button @click="ClickSignUp">Sign Up</button> -->
+    <div class = "form-container signin-container">  
+      <form>
+        
+        <div>
+          <label for="logInusername">Your Username:</label>
+          <br/>
+          <input
+            type="username"
+            name="username"
+            id="logInusername"
+            required
+          />
         </div>
-        <div class="box signup">
-          <h2>Don't have an Account?</h2>
-          <button class="signupbtn btn" @click="ClickSignUp">Sign Up</button>
+        
+        <div>
+          <label for="logInpassword">Your Password:</label>
+          <br/>
+          <input
+            type="password"
+            name="password"
+            id="logInpassword"
+            required
+          />
         </div>
-      </div>
-
-      <div
-        class="formBx absolute left-0 w-1/2 h-full bg-gray-200 z-50 flex justify-center items-center"
-      >
-        <div class="form signinform">
-          <form class = pl-4>
-
-            <div>
-              <label for="username">Your Username:</label>
-              <div class="col-sm-10">
-                <input
-                  type="username"
-                  name="username"
-                  id="logInusername"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="password">Your Password:</label>
-              <div class="col-sm-10">
-                <input
-                  type="password"
-                  name="password"
-                  id="logInpassword"
-                  required
-                />
-              </div>
-            </div>
-
-            <br />
-            <!-- <p class="text-red-600">
-              <% if (messages.error){%>
-                                  <%=messages.error%>
-                                      <%}%>
-            </p> -->
-            <button class="btn" type="button" @click="login">Login</button>
-            <br/>
-          </form>
-        </div>
-        <div class="form signupform">
-          <form>
-
-            <div>
-              <label for="name">Your Name:</label>
-              <div class="col-sm-10">
-                <input type="text" name="name" id="signUsername" required />
-              </div>
-            </div>
-
-            <div>
-              <label for="email">Your Password:</label>
-              <div class="col-sm-10">
-                <input type="password" name="password" id="password1" required />
-              </div>
-            </div>
-
-            <div>
-              <label for="password">Verify Your Password:</label>
-              <div class="col-sm-10">
-                <input type="password" name="password" id="password2" required />
-              </div>
-            </div>
-  
-            <br />
-            <button class="btn mt-10 mb-10" type="button" @click="register">Register</button>
-          </form>
-        </div>
-      </div>
+        <button type="button" class = "btn" @click="login">Login</button>  
+      </form>
     </div>
-  </template>
 
-  <!-- ========================================================= -->
+
+    <div class = "form-container signup-container">
+      <form>
+        <div>
+          <label for="signUsername">Your Username:</label>
+          <br/>
+            <input 
+              type="text" 
+              name="name" 
+              id="signUsername" 
+              required 
+            />
+        </div>
+        <div>
+          <label for="password1">Your Password:</label>
+          <br/>
+            <input 
+              type="password" 
+              name="password" 
+              id="password1" 
+              required 
+            />
+        </div>
+        <div>
+          <label for="password2">Verify Your Password:</label>
+          <br/>
+            <input 
+              type="password" 
+              name="password" 
+              id="password2" 
+              required 
+            />
+        </div>
+        <button type="button" class="btn" @click="register">Register</button>
+      </form>
+    </div>
+    <!-- ======= -->
+    <div class="overlay-container">
+      <!-- <video  autoplay muted loop>
+        <source src="https://storage.coverr.co/videos/coverr-italian-old-city-1570370740593?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg1NjM4MTMxfQ.O0oXifvIX_nFLO3JzgH2GTW3JNCokuMvCzdcsesGj4g" type="video/mp4">
+      </video> -->
+		  <div class="overlay">
+        <div class = "overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="btn" @click="ClickSignUp">Sign Up</button>
+        </div >
+        <div class = "overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="btn" @click="ClickSignIn">Sign In</button>
+        </div>
+        
+		  </div>
+	  </div>
+    <!-- ========== -->
+
+
+  </div>
+  </template>
 
   <script>
   import axios from "axios";
@@ -93,17 +100,18 @@
   export default {
     name: "AuthPage",
     setup() {
+      
+      
       const ClickSignUp = () => {
-        const formBx = document.querySelector(".formBx");
-        // const body = document.querySelector("body");
-        formBx.classList.add("active");
-        // body.classList.add("active");
+        
+        const container = document.querySelector(".container"); 
+        container.classList.add("right-panel-active");
+        
+        
       };
       const ClickSignIn = () => {
-        const formBx = document.querySelector(".formBx");
-        // const body = document.querySelector("body");
-        formBx.classList.remove("active");
-        // body.classList.remove("active");
+        const container = document.querySelector(".container");       
+        container.classList.remove("right-panel-active");
       };
       const login = () => {
         const username = document.getElementById("logInusername").value;
@@ -168,7 +176,7 @@
             console.log(err);
           });
       }
-      return { ClickSignUp, ClickSignIn, login, register };
+      return { ClickSignUp, ClickSignIn, login, register};
     },
   };
   </script>
