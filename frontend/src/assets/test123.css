@@ -23,6 +23,18 @@ input {
 	width: 100%;
 }
 
+.AuthWord{
+	@apply flex flex-row;
+    font-size: 10vh;
+    font-weight: 900;
+	background-image: url("pexels-miriam-espacio-1881621.jpg");
+}
+
+.h1Word{
+    font-size: 5vh;
+    font-weight: 900;
+}
+
 .container {
     @apply relative flex flex-row;
 	background-color: #fff;
@@ -34,6 +46,7 @@ input {
     height: 100vh;
 	max-width: 100%;
 	min-height: 480px;
+	min-width: 360px
 }
 
 .form-container {
@@ -97,10 +110,10 @@ input {
 }
 
 .overlay {
-    
 	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: -webkit-linear-gradient(to right, #FF00AA, #BD00A8);
+	background: linear-gradient(to right, #FF00AA, #BD00A8);
+	/* background: autoplay muted loop url("frontend\src\assets\vedio.mp4"); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -111,8 +124,15 @@ input {
 	width: 200%;
   	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
-}
 
+}
+.video {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+  }
 .container.right-panel-active .overlay {
   	transform: translateX(50%);
 }

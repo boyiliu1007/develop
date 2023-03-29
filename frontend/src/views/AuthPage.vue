@@ -1,13 +1,10 @@
 <!-- done, but could be better -->
 <template>
-  <div class = "container">
-    <!-- <h2>Already have an Account?</h2> -->
-    <!-- <button @click="ClickSignIn">Sign In</button> -->
-    <!-- <h2>Don't have an Account?</h2> -->
-    <!-- <button @click="ClickSignUp">Sign Up</button> -->
+  <div class = "container animate__animated animate__fadeInDown">
     <div class = "form-container signin-container">  
       <form>
-        
+        <h2 class = "AuthWord" id = "AuthWord">Log In</h2>
+        <br/>
         <div>
           <label for="logInusername">Your Username:</label>
           <br/>
@@ -29,13 +26,15 @@
             required
           />
         </div>
-        <button type="button" class = "btn" @click="login">Login</button>  
+        <button type="button" class = "btn mt-5" @click="login">Login</button>  
       </form>
     </div>
 
 
     <div class = "form-container signup-container">
       <form>
+        <h2 class = "AuthWord" id = "AuthWord">Sign Up</h2>
+        <br/>
         <div>
           <label for="signUsername">Your Username:</label>
           <br/>
@@ -66,7 +65,7 @@
               required 
             />
         </div>
-        <button type="button" class="btn" @click="register">Register</button>
+        <button type="button" class="btn mt-5" @click="register">Register</button>
       </form>
     </div>
     <!-- ======= -->
@@ -74,16 +73,18 @@
       <!-- <video  autoplay muted loop>
         <source src="https://storage.coverr.co/videos/coverr-italian-old-city-1570370740593?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg1NjM4MTMxfQ.O0oXifvIX_nFLO3JzgH2GTW3JNCokuMvCzdcsesGj4g" type="video/mp4">
       </video> -->
+      
 		  <div class="overlay">
+        
         <div class = "overlay-panel overlay-right">
-          <h1>Hello, Friend!</h1>
+          <h1 class = "h1Word">Hello, Friend!</h1>
           <p>Enter your personal details and start journey with us</p>
-          <button class="btn" @click="ClickSignUp">Sign Up</button>
+          <button class="btn mt-5" @click="ClickSignUp">Sign Up</button>
         </div >
         <div class = "overlay-panel overlay-left">
-          <h1>Welcome Back!</h1>
+          <h1 class = "h1Word">Welcome Back!</h1>
           <p>To keep connected with us please login with your personal info</p>
-          <button class="btn" @click="ClickSignIn">Sign In</button>
+          <button class="btn mt-5" @click="ClickSignIn">Sign In</button>
         </div>
         
 		  </div>
@@ -180,6 +181,7 @@
     },
   };
   </script>
+
   <style>
   body {
     display: flex;
@@ -188,4 +190,20 @@
     align-items: center;
     min-height: 100vh;
   }
+  
+  h1{
+    font-weight: 600;
+  }
+
+  h2{
+    font-weight: 900;
+    background-image: url("pexels-miriam-espacio-1881621");
+    background-size: cover;
+    color: transparent;
+    -webkit-background-clip:text;
+    background-clip: text;
+    background-position: fixed;
+  }
+  
+  
   </style>

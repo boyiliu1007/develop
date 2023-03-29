@@ -26,6 +26,8 @@
 
     }
 
+    
+
     textarea,
     input {
         @apply p-2 rounded-xl;
