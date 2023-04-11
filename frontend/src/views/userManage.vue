@@ -35,9 +35,9 @@
               <p v-html="post.sanitizedHtml"></p>
             </div>
             
-            <div class="control">
+            <div class="control flex flex-auto">
               <button
-                class="btn btn-primary"
+                class="btn btn-primary m-0"
                 type="button"
                 v-on:click="toggleModal(post.POST_ID)"
               >
@@ -50,7 +50,7 @@
                 method="POST"
                 class="d-inline"
               >
-                <button type="button" class="btn btn-danger" @click="dp(post.POST_ID)">
+                <button type="button" class="btn btn-danger m-0" @click="dp(post.POST_ID)">
                   Delete
                 </button>
               </form>
@@ -59,7 +59,7 @@
         </div>
         <div
           v-show="showModal[post.POST_ID]"
-          class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+          class="overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none focus:outline-none justify-center items-center flex float-container fixed"
         >
           <div class="relative w-auto my-6 mx-auto max-w-6xl">
             <!--content-->
@@ -112,13 +112,13 @@
                     >
                       submit
                     </button>
-                    <!-- <button 
+                    <button 
                       class="btn" 
-                      type="submit"
-                      v-on:click = " toggleModal(post.POST_ID); edit(post.POST_ID)"
+                      type="button"
+                      v-on:click = " toggleModal(post.POST_ID)"
                     >
-                      Save Changes
-                    </button> -->
+                      close
+                    </button>
                   </div>
                 </div>
               </div>
@@ -128,18 +128,10 @@
       </div>
     </div>
     <br/>
-    <!-- 有空再改吧 -->
-    <!-- <div v-if = "ispost" class = "fontSize_NoPost text-center">
-        <div v-once>
-          
-          <h1>No post yet?</h1>
-          <h1>Create a new one! </h1>
-          
-        </div>  
-    </div> -->
     <br/>
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import Cookies from "js-cookie";

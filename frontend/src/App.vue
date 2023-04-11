@@ -1,10 +1,10 @@
 <!-- done -->
 <template>
-  <nav class="fixed w-full h-auto flex flex-row justify-between">
+  <nav class="fixed w-full flex flex-row h-auto justify-between items-center">
 
     <div class="left-col w-1/8">
       <router-link to="/">
-        <h1 class=" pr-4 pl-4 font-semibold m-4 buttonHover">Boyi's Blog</h1>
+        <h1 class="  font-semibold m-4 buttonHover">Boyi's Blog</h1>
       </router-link>
     </div>
 

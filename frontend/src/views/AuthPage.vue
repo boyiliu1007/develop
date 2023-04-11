@@ -1,6 +1,6 @@
 <!-- done, but could be better -->
 <template>
-  <div class = "container animate__animated animate__fadeInDown">
+  <div class = "container animate__animated animate__fadeInDown ">
     <div class = "form-container signin-container">  
       <form>
         <h2 class = "AuthWord" id = "AuthWord">Log In</h2>
@@ -70,10 +70,6 @@
     </div>
     <!-- ======= -->
     <div class="overlay-container">
-      <!-- <video  autoplay muted loop>
-        <source src="https://storage.coverr.co/videos/coverr-italian-old-city-1570370740593?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg1NjM4MTMxfQ.O0oXifvIX_nFLO3JzgH2GTW3JNCokuMvCzdcsesGj4g" type="video/mp4">
-      </video> -->
-      
 		  <div class="overlay">
         
         <div class = "overlay-panel overlay-right">
@@ -101,19 +97,16 @@
   export default {
     name: "AuthPage",
     setup() {
-      
-      
       const ClickSignUp = () => {
-        
         const container = document.querySelector(".container"); 
         container.classList.add("right-panel-active");
-        
-        
       };
+
       const ClickSignIn = () => {
         const container = document.querySelector(".container");       
         container.classList.remove("right-panel-active");
       };
+
       const login = () => {
         const username = document.getElementById("logInusername").value;
         const password = document.getElementById("logInpassword").value;
@@ -204,6 +197,5 @@
     background-clip: text;
     background-position: fixed;
   }
-  
   
   </style>
