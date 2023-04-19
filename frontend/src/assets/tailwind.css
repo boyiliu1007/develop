@@ -270,10 +270,22 @@
         text-shadow: 2px 2px #000000;
     }
     .info{
-      overflow : hidden;
-      text-overflow : ellipsis;
-      white-space : nowrap;
-      max-width: 70vw;
+        width: 0.5 em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .gradation-hr {
+        border: none;
+        height: 3px;
+        background-image: linear-gradient(to right, #f015bf, #faf86e);
+        margin: 10px 0;
+      }
+    .transparent-hr {
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        border-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5), transparent);
+        margin: 10px 0;
     }
     .hyphens {
         -webkit-hyphens: auto;
