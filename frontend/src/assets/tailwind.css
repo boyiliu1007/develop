@@ -71,13 +71,15 @@
         opacity:0.8;
     }
     .btnWhite {
-        @apply px-20 py-2 mx-2  text-black;
+        @apply px-20 py-2 mx-2  text-black flex justify-center;
         border-radius: 29px;
         /* background: #e0e0e0; */
         background: white;
         box-shadow: 4px 4px 4px #500247;
         opacity:0.8;
-        
+        padding-left: 7vw;
+        padding-right: 7vw;
+        max-width: 5rem;
     }
     .btnWhite:hover {
         border-radius: 29px;

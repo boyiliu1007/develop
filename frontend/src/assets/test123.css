@@ -112,11 +112,15 @@ input {
 
 .overlay {
 	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF00AA, #BD00A8);
-	background: linear-gradient(to right, #FF00AA, #BD00A8);
+	/*background: -webkit-linear-gradient(to right, #FF00AA, #BD00A8); */
+	/*background: linear-gradient(to right, #FF00AA, #BD00A8); */
+	/*background: linear-gradient(230deg,#515bd4,#8134af,#dd2a7b);*/
+	background: linear-gradient(230deg,#f5587b,#ff8a5c,#fff591);
+	animation: partytime 10s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite; 
+	background-size: 400% 400%;
 	/* background: autoplay muted loop url("frontend\src\assets\vedio.mp4"); */
 	background-repeat: no-repeat;
-	background-size: cover;
+	
 	background-position: 0 0;
 	color: #FFFFFF;
 	position: relative;
@@ -127,6 +131,12 @@ input {
 	transition: transform 0.6s ease-in-out;
 
 }
+@keyframes partytime { 
+    0%{background-position:83% 0%}
+    50%{background-position:18% 100%}
+    100%{background-position:83% 0%}
+}
+
 .video {
 	position: fixed;
 	right: 0;

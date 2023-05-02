@@ -1,78 +1,95 @@
-<!-- done -->
+<!-- not done yet -->
 <template>
-	<div class="flex flex-col pt-24 ease-in-out duration-1000">
-	  <!--用 v-for 可以迭代-->
-	  <h1 class="text-3xl article-title self-center animate__animated animate__fadeInLeft">所有文章</h1>
-	  <!-- <hr/> -->
-	  <!-- 下面的 div 加self-center 置中-->
-		<div v-for="POST in posts" v-bind:key="POST.POST_ID" class="group self-center animate__animated animate__fadeInLeft">
-		  <div class="wrap-collabsible ease-in-out duration-1000 ">
-			<!-- <input id="collapsible" class="toggle" type="checkbox" /> -->
-  
-			<label for="collapsible" class="lbl-toggle text-center">
-			  <div class="card mb-3">
-				<div class="card-body">
-				  <div class="article-desc mb-1 pt-3">
-					{{ POST.POST_ID }}
-				  </div>
-				  <h2 class="article-title">
-					{{ POST.Title }}
-				  </h2>
-				  <div class="text-sm text-slate-400 text-muted mb-2">
-					{{ POST.Author }}
-				  </div>
-				  <hr class = "gradation-hr thick-line">
-				  <div class="px-10 info flex justify-start mb-10">
-					{{ POST.Detail }}
-				  </div>
-				  <div class="control">
-					<p class="btn">
-					  <a :href="frontEndUrl + '/post/' + POST.POST_ID">View Comments</a>
-					</p>
-				  </div>
-				</div>
-			  </div>
-			</label>  
-
+	<div class = "animate__animated animate__fadeInLeft">
+	  <div class = "pt-24">
+		<div class="card sticky hyphens">
+		  <h1 class="article-title">{{ post.Title }}</h1>
+		  <p class="text-sm text-slate-400 mb-2">by {{ post.Author }}</p>
+		  <hr />
+		  <p>{{ post.Detail }}</p>
+		</div>
+	  </div>
+	  <div class="overflow-y-scroll m-4 p-10">
+		
+		<div class = "flex flex-row ">
+		  <h1 class="article-title w-4/5 justify-start pr-10" >Comments</h1>
+		  <div class = " justify-end">
+			<div class = "w-auto self-center pl-3">
+			  <button class="btnWhite" @click="link">new</button>
+			</div>
 		  </div>
 		</div>
+  
+  
+		<div v-if="showWarning">
+		  <p class="card w-full text-red-600 article-title">{{ Warning_msg }}</p>
+		</div>
+		<div v-if="!showWarning">
+		  <div class="card" v-for="comment in comments" :key="comment.COMMENT_ID">
+			<p>{{ comment.Field }}</p>
+		  </div>
+		</div>
+	  </div>
 	</div>
-	
-	<br/>
-	<br/>
-	<br/>
-	<br/>
 	</template>
-	
-	
-	<script>
+  
+  <script>
 	import axios from "axios";
-	import { ref, reactive } from "vue";
-	const baseUrl = "http://localhost:3000/api/";
-	const frontEndUrl = "http://localhost:5173";
+	import { ref } from "vue";
+	import Cookies from "js-cookie";
+	import { useRoute } from "vue-router";
+	import { useRouter } from 'vue-router';
+	const baseUrl = "http://localhost:3000/api/post/";
 	export default {
 	  setup() {
-		// 雖然是陣列，但這裡用ref因為內容不會改變
-		const posts = ref([]);
-		// 這裡用reactive因為內容會改變
-		const showModal = reactive([100]);
-		// some functions
-		const toggleModal = (id) => {
-		  //console.log("toggle Modal", id);
-		  showModal[id] = !showModal[id];
+		const route = useRoute();
+		const router = useRouter();
+		const showWarning = ref(false);
+		const Warning_msg = ref("");
+		let reqUrl = baseUrl + route.params.id;
+		const post = ref({});
+		const comments = ref({});
+		const getPost = async () => {
+		  try {
+			const res = await axios.get(reqUrl);
+			post.value = res.data[0];
+			console.log(res.data);
+		  } catch (error) {
+			console.log(error);
+		  }
 		};
-		const getPosts = async () => {
-		  const response = await axios.get(baseUrl, {
-			headers: {
-			  "Content-Type": "application/json",
-			},
-		  });
-		  posts.value = response.data;
-		  console.log(response.data);
-		  console.log(posts.value);
+		const getComment = async () => {
+		  try {
+			const res = await axios.get(reqUrl + "/comments",{
+			  headers: {
+				"Content-Type": "application/json",
+			  },
+			});
+			if (res.status === 200){
+			  comments.value = res.data;
+			} else {
+			  comments.value = [];
+			  showWarning.value = true;
+			  Warning_msg.value = "No comments yet";
+			}
+			console.log(res.data);
+		  } catch (error) {
+			console.log(error);
+		  }
 		};
-		getPosts();
-		return { posts, showModal, toggleModal, frontEndUrl };
-	  },
-	};
-	</script>
+		getPost();
+		getComment();
+  
+		const link =() =>{
+		  if(Cookies.get("jwt")){
+			router.push(route.params.id + "/addcomments");
+		  }
+		  else{
+			router.push("/notLogin");
+		  }
+		}
+		return { post, comments, showWarning, Warning_msg, link};
+	  }
+	}
+  </script>
+	

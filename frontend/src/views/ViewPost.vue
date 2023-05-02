@@ -1,20 +1,29 @@
 <!-- not done yet -->
+
 <template>
   <div class = "animate__animated animate__fadeInLeft">
-    <div class = "pt-24">
-      <div class="card sticky hyphens">
+
+    <!-- <div class="triangle">
+      <div class="triangle_outer">
+        <div class="clip"></div>
+      </div>
+      <div class="triangle_inner"></div>
+    </div> -->
+
+    <div class = "pt-24 flex justify-center">
+      <div class="card hyphens">
         <h1 class="article-title">{{ post.Title }}</h1>
         <p class="text-sm text-slate-400 mb-2">by {{ post.Author }}</p>
-        <hr />
+        <hr class = "gradation-hr thick-line"/>
         <p>{{ post.Detail }}</p>
       </div>
     </div>
-    <div class="overflow-y-scroll m-4 p-10">
+    <div>
       
       <div class = "flex flex-row ">
-        <h1 class="article-title w-4/5 justify-start pr-10" >Comments</h1>
+        <h1 class="article-title w-4/5 justify-start pr-10 ml-5" >Comments</h1>
         <div class = " justify-end">
-          <div class = "w-auto self-center pl-3">
+          <div class = "w-auto self-center pl-3 pr-3">
             <button class="btnWhite" @click="link">new</button>
           </div>
         </div>
@@ -22,10 +31,10 @@
 
 
       <div v-if="showWarning">
-        <p class="card w-full text-red-600 article-title">{{ Warning_msg }}</p>
+        <p class="speech left text-red-600 article-title">{{ Warning_msg }}</p>
       </div>
       <div v-if="!showWarning">
-        <div class="card" v-for="comment in comments" :key="comment.COMMENT_ID">
+        <div class="speech left" v-for="comment in comments" :key="comment.COMMENT_ID">
           <p>{{ comment.Field }}</p>
         </div>
       </div>
@@ -92,4 +101,6 @@
     }
   }
 </script>
+
+
   
