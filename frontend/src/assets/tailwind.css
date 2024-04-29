@@ -15,6 +15,7 @@
     }
 
     nav {
+        @apply h-auto;
         top: 0px;
         left: 0px;
         z-index: 10000;
@@ -32,7 +33,15 @@
     @media (min-height: 992px) { ... }
     
     @media (min-height: 1200px) { ... } */
-    
+    form {
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        text-align: center;
+    }
 
     textarea,
     input {
@@ -277,6 +286,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .nav_container{
+        @apply absolute;
+        top: 100%;
+        left: calc(100% - 200px);
+        z-index: 10000;
+        background: #FFF;
+    }
+
     .gradation-hr {
         border: none;
         height: 3px;
@@ -295,28 +313,36 @@
         -ms-hyphens: auto;
         hyphens: auto;
     }
+
+    
 }
-/* 偏怪 */
+
+
+
 @media screen and (max-width: 576px) {
-    @layer components{
+    
         .btn {
             @apply px-4 py-2 mx-2  text-white;
-            border-radius: 0px;
+            border-radius: 12px;
             /* background: #e0e0e0; */
             background: url("button.png");
             box-shadow: 4px 4px 4px #500247;
             opacity:0.8;
         }
         .btn:hover {
-            border-radius: 0px;
+            border-radius: 12px;
             background: url("button.png") center/120%;
             box-shadow: 2px 2px 2px #500247;
         }
-    }
+        .form-group > * {
+            flex: 1 1 auto;
+            min-width: 0; /* prevent child elements from overflowing parent */
+          }
+    
 }
 
 @media screen and (min-width: 993px) {
-    @layer components {
+    
         .btn {
             @apply px-4 py-2 mx-2  text-white;
             border-radius: 29px;
@@ -330,5 +356,5 @@
             background: url("button.png") center/120%;
             box-shadow: 2px 2px 2px #500247;
         }
-    }
+    
 }

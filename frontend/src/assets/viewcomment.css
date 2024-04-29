@@ -30,7 +30,7 @@
     border-left: 20;
    
     /* (C2-2) POSITION AT LEFT */
-    left: -20px; 
+    left: -15px; 
     bottom: min(20%, 10px);
     margin-top: -20px;
   }

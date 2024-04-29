@@ -2,13 +2,13 @@
   <div class="flex flex-col pt-24 ease-in-out duration-1000 animate__animated animate__fadeInLeft">
     <!--用 v-for 可以迭代-->
     <h1 class="text-3xl article-title self-center">我的文章</h1>
-
+    <font-awesome-icon icon="fa-sharp fa-solid fa-trash" />
     <br/>
     <br/>
     <router-link to="/new" class = "w-auto self-center pr-0">
       <button class="btnWhite">new</button>
     </router-link>
-
+    
     <div v-for="post in posts" v-bind:key="post.POST_ID" class="group">
       <div v-if = "post.Author === mypost">
         <div class="wrap-collabsible">
@@ -22,15 +22,14 @@
                 <div class="text-sm text-slate-400 text-muted mb-2">
                   {{ post.Author }}
                 </div>
+                <hr class = "gradation-hr mt-2 mb-2">
                 <div class="article-desc mb-2">
                   {{ post.Detail }}
                 </div>
               </div>
             </div>
           </label>
-          <div
-            class="collapsible-content transition transform hidden group-hover:block"
-          >
+          <div class="collapsible-content transition transform hidden group-hover:block">
             <div class="content-inner">
               <p v-html="post.sanitizedHtml"></p>
             </div>

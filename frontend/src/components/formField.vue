@@ -1,7 +1,7 @@
 <!-- not done yet -->
 <template>
     <form>
-      <div class="subcontainer flex flex-col self-center align-center ">
+      <div class="subcontainer flex flex-col self-center align-center">
         <div class="form-group flex flex-row w-full m-4">
           <div class="w-1/5 border-0 border-blue mr-2">
             <label for="title">Title</label>

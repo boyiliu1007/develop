@@ -1,6 +1,6 @@
 <template>
   <div class = "animate__animated animate__fadeInDown">
-    <form-field class="w-[70vw]" :url="url" :id="id"/>
+    <form-field :url="url" :id="id"/>
   </div>
 </template>
 
