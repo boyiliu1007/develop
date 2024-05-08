@@ -103,7 +103,7 @@
     }
 
     .card {
-        @apply p-4 m-6 self-center ;
+        @apply p-4 m-6 ;
         width: 80vw;
         max-width: 1100px;
         min-height: 150px;
@@ -307,11 +307,13 @@
         border-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5), transparent);
         margin: 10px 0;
     }
-    .hyphens {
+    .lineBreak {
+        line-break: anywhere;
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
         -ms-hyphens: auto;
         hyphens: auto;
+        
     }
 
     
